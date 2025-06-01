@@ -2,6 +2,9 @@
 
 Este proyecto es un sistema interactivo de consola desarrollado en **Python 3.13.3** 🐍. Permite a una empresa registrar, visualizar, buscar y eliminar productos a través de una interfaz sencilla y amigable para el usuario. Está orientado a principiantes en programación que deseen practicar estructuras de datos como listas, ciclos `while` y `for`, validación de entrada y lógica condicional.
 
+> 🔄 **Versión actual (rama `dict`)**: Los productos ahora se gestionan mediante diccionarios.  
+<!-- TODO: > 🏷️ Se recomienda agregar una etiqueta (`label`) en GitHub a la rama `dict` con el nombre `enhancement`. -->
+
 ---
 
 ## 📌 Descripción del Proyecto
@@ -20,10 +23,10 @@ Este programa tiene como objetivo diseñar un sistema básico que permita **gest
 
 ### ✅ Requisitos funcionales:
 
-1. Utilizar **listas** para almacenar y gestionar los datos.
+1. Utilizar **listas** y ahora también **diccionarios** para almacenar y gestionar los datos.
 2. Incorporar **bucles `while` y `for`** según corresponda.
 3. Validar las entradas del usuario, evitando datos vacíos o no válidos.
-4. Utilizar **estructuras condicionales** para gestionar opciones del menú.
+4. Utilizar **estructuras condicionales** y `match-case` para gestionar opciones del menú.
 5. Mantener el programa en ejecución hasta que el usuario elija salir.
 
 ### 💾 Estructura de los datos:
@@ -31,10 +34,14 @@ Este programa tiene como objetivo diseñar un sistema básico que permita **gest
 Cada producto es representado como una sublista:
 
 ```python
-["nombre", "categoría", precio]
+{
+  "name": "nombre del producto",
+  "category": "categoría",
+  "price": precio
+}
 ```
 
-Y se almacena dentro de una lista general de productos.
+Y se almacena dentro de una lista general de productos: product_list.
 
 ---
 
@@ -90,55 +97,61 @@ python3 main.py
 ### 📥 Ingreso de productos
 
 * Solicita nombre, categoría y precio.
+* Verifica si el producto ya existe.
 * El precio debe ser un número entero.
-* Los productos se guardan en una lista como sublistas.
+* Los productos se guardan en una lista de diccionarios.
 
 ### 📊 Visualización de productos
 
-* Muestra todos los productos con su número.
+* Muestra todos los productos con su número, ordenados alfabéticamente por nombre.
 * Presenta los datos en una tabla legible y alineada.
+* Utiliza ordenamiento burbuja para la lista.
 
 ### 🔎 Búsqueda de productos
 
-* Permite buscar productos por su **nombre**.
+* Permite buscar productos por su nombre exacto, sin importar mayúsculas/minúsculas.
 * Si hay coincidencias, muestra el producto completo.
 * Si no se encuentra nada, muestra un mensaje informativo.
 
 ### 🗑️ Eliminación de productos
 
+* Muestra la lista ordenada con sus índices.
 * Permite eliminar un producto por su número en la lista.
-* Valida que la entrada sea correcta.
+* Valida que la entrada sea correcta y esté dentro del rango.
 
 ---
 
 ## 🧠 Tabla de nombres de variables y estructuras
 
-| Español                           | Inglés                | Tipo de dato                            |
-| :-------------------------------- | :-------------------- | :-------------------------------------- |
-| Lista de productos                | `product_list`        | `list` de sublistas `[str, str, int]`   |
-| Producto individual nuevo         | `new_product`         | `list` de 3 elementos `[str, str, int]` |
-| Nombre del producto               | `name`                | `str`                                   |
-| Categoría del producto            | `category`            | `str`                                   |
-| Precio del producto               | `price`               | `str` → convertido a `int`              |
-| Lista de opciones del menú        | `menu_opcion`         | `list` de `str`                         |
-| Entrada del usuario (menú)        | `user_input`          | `str`                                   |
-| Entrada del usuario (eliminar)    | `del_input`           | `str`                                   |
-| Índice del producto a eliminar    | `del_index`           | `int`                                   |
-| Producto eliminado                | `deleted`             | `list` (sublista eliminada)             |
-| Texto símbolo del prompt          | `symbol`              | `str`                                   |
-| Bucle de ejecución del programa   | `is_running`          | `bool`                                  |
-| Opción seleccionada (entero)      | `option`              | `int`                                   |
-| Contador de productos en lista    | `i`                   | `int`                                   |
-| Nombre a buscar                   | `search_name`         | `str`                                   |
-| Bandera de producto encontrado    | `found`               | `bool`                                  |
-| Texto estático tabla de productos | *(constante literal)* | *dentro de `print()`*                   |
+| Español                           | Inglés                | Tipo de dato                         |
+| :-------------------------------- | :-------------------- | :----------------------------------- |
+| Lista de productos                | `product_list`        | `list[dict[str, str \| int]]`        |
+| Producto individual nuevo         | `new_product`         | `dict[str, str \| int]`              |
+| Producto eliminado                | `deleted`             | `dict[str, str \| int]`              |
+| Producto en búsqueda              | `prod`                | `dict[str, str \| int]`              |
+| Nombre del producto               | `name`                | `str`                                |
+| Categoría del producto            | `category`            | `str`                                |
+| Precio del producto               | `price`               | `str` → convertido a `int`           |
+| Lista de opciones del menú        | `menu_opcion`         | `list[str]`                          |
+| Entrada del usuario (menú)        | `user_input`          | `str`                                |
+| Entrada del usuario (eliminar)    | `del_input`           | `str`                                |
+| Índice del producto a eliminar    | `del_index`           | `int`                                |
+| Opción seleccionada               | `option`              | `int`                                |
+| Nombre a buscar                   | `search_name`         | `str`                                |
+| Bandera de producto encontrado    | `found`               | `bool`                               |
+| Texto símbolo del prompt          | `symbol`              | `str` (ej: `'>'`)                    |
+| Control principal del programa    | `is_running`          | `bool`                               |
+| Contadores en bucles              | `i`, `j`, `index`     | `int`                                |
+| Texto estático tabla de productos | *(dentro de `print`)* | `str` (formato de tabla y cabeceras) |
+
 
 ---
 
 ## 📘 Notas adicionales
 
-* El código está documentado con claridad.
+* El código está documentado con claridad y usa match-case (Python 3.10+).
 * Este proyecto es ideal para comenzar con lógica de programación aplicada.
+* La rama dict incluye mejoras de estructura y legibilidad del código.
 * Se recomienda extenderlo más adelante con persistencia en archivos o una interfaz gráfica.
 
 ---
