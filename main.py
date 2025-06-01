@@ -118,9 +118,11 @@ while is_running:
             # Opción 2: Mostrar productos
             # ---------------------------------
             print("\n-- 📦 Lista de Productos --")
+            print("Presione Enter en cualquier campo para volver al menú.\n")
             if not product_list:
-                print("📦 Lista de Productos:\n")
+                print("No hay Productos aun")
             else:
+                print("📦 =========================================== 📦")
                 # Ordena por nombre en orden alfabetico a - z
                 product_list.sort()
                 for i, prod in enumerate(product_list, start=1):
@@ -133,6 +135,7 @@ while is_running:
             # ---------------------------------
             while True:
                 print("\n--- 🔍 Buscar producto por nombre ---\n")
+                print("Presione Enter en cualquier campo para volver al menú.\n")
                 # Nota Mental: el uso de parentesis para continuar con una expresion multilenea se conoce como _implicit line continuation_
                 search_name = (
                     input(
@@ -156,17 +159,27 @@ while is_running:
                             """)
                         found = True
                         break
+                    if found:
+                        print("==============================================")
                     if not found:
                         print("❌ Producto no encontrado.")
+                    else:
+                        print("\n  ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌")
+                        print("❌ Producto no encontrado ❌")
+                        print("  ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌\n")
+                        break
         case 4:
             # ---------------------------------
             # Opción 4: Eliminar producto
             # ---------------------------------
             print("\n--- 🗑️ Eliminar un producto ---\n")
+            print("Presione Enter en cualquier campo para volver al menú.\n")
             if not product_list:
                 print("⚠️ No hay productos para eliminar.")
                 break
 
+            print("📦 =========================================== 📦")
+            # Ordena por nombre en orden alfabetico a - z
             product_list.sort()
             for i, prod in enumerate(product_list, start=1):
                 print(
