@@ -1,6 +1,7 @@
 # 📦 GESTIÓ DE PRODUCTOS
 # -----------------------------------------------------------------------------
-# Author: Carlos Andres Alzate | Fecha 25 - 05 -2025
+# Author: Carlos Andres Alzate
+# Fecha: Mayo - 2025
 # Descripción: Este script permite gestionar productos en una lista.
 # Funcionalidades: agregar, mostrar, buscar y eliminar productos.
 # Cada producto tiene: nombre, categoría y precio.
@@ -72,9 +73,9 @@ while is_running:
     # 📌 Menú principal controlado con match-case
     match option:
         case 1:
-            # ---------------------------------
+            # -----------------------------------------------------------------
             # Opción 1: Agregar nuevo producto
-            # ---------------------------------
+            # -----------------------------------------------------------------
             print("\n--- ➕ Agregar un nuevo producto ---")
             print("Presione Enter en cualquier campo para volver al menú.\n")
 
@@ -106,17 +107,19 @@ while is_running:
 
                 # Confirmacion visual del producto agregado
                 print("\n✅ ¡Producto agregado exitosamente!")
-                print(f"""
+                print(
+                    f"""
                     \r📦 Producto:  {new_product[0].title()}
                     \r🏷️ Categoría: {new_product[1].title()}
                     \r💲 Precio:    ${new_product[2]}
-                    """)
+                    """
+                )
                 break
 
         case 2:
-            # ---------------------------------
+            # -----------------------------------------------------------------
             # Opción 2: Mostrar productos
-            # ---------------------------------
+            # -----------------------------------------------------------------
             print("\n-- 📦 Lista de Productos --")
             print("Presione Enter en cualquier campo para volver al menú.\n")
             if not product_list:
@@ -130,9 +133,9 @@ while is_running:
                         f"{i:2}. {prod[0].title():<15} | {prod[1].title():<12} | ${prod[2]}"
                     )
         case 3:
-            # ---------------------------------
+            # -----------------------------------------------------------------
             # Opción 3: Buscar producto
-            # ---------------------------------
+            # -----------------------------------------------------------------
             while True:
                 print("\n--- 🔍 Buscar producto por nombre ---\n")
                 print("Presione Enter en cualquier campo para volver al menú.\n")
@@ -151,12 +154,14 @@ while is_running:
                 found = False
                 for prod in product_list:
                     if search_name == prod[0]:
-                        print(f"""
+                        print(
+                            f"""
                             \r✅ Producto encontrado
                             \r🛍️ Nombre: {prod[0].title()}
                             \r🏷️ Categoría: {prod[1].title()}
                             \r💲 Precio:     ${prod[2]}
-                            """)
+                            """
+                        )
                         found = True
                         break
                     if found:
@@ -169,9 +174,9 @@ while is_running:
                         print("  ❌ ❌ ❌ ❌ ❌ ❌ ❌ ❌\n")
                         break
         case 4:
-            # ---------------------------------
+            # -----------------------------------------------------------------
             # Opción 4: Eliminar producto
-            # ---------------------------------
+            # -----------------------------------------------------------------
             print("\n--- 🗑️ Eliminar un producto ---\n")
             print("Presione Enter en cualquier campo para volver al menú.\n")
             if not product_list:
